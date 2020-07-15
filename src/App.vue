@@ -1,15 +1,23 @@
 <template>
-  <div id="app">
-    <h1>ss</h1>
+  <div>
+    <b-card>
+      <b-card-title>Ok teste</b-card-title>
+      <b-card-text>
+        Some quick example text to build on the
+        <em>card title</em> and make up the bulk of the card's content.
+      </b-card-text>
+
+      <a href="#" class="card-link">Card link</a>
+      <b-link href="#" class="card-link">Another link</b-link>
+    </b-card>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: hsl(213, 58%, 4%);
-}
-</style>
+<script>
+export default {
+  name: 'App'
+  // components: {
+  //   HelloWorld
+  // }
+};
+</script>
