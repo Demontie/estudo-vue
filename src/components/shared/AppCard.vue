@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <b-card>
-      <b-card-title>{{ title }}</b-card-title>
-      <b-card-text>
-        <slot></slot>
-      </b-card-text>
-    </b-card>
-  </div>
+  <b-card>
+    <b-card-title>{{ title }}</b-card-title>
+    <b-card-text>
+      <slot></slot>
+    </b-card-text>
+  </b-card>
 </template>
 
 <script>
