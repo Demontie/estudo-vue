@@ -1,17 +1,17 @@
 <template>
-  <ContainerApp>
-    <AppCard title="Teste">Primeiro teste</AppCard>
-  </ContainerApp>
+  <AppCard title="Repository">
+    <FormMain></FormMain>
+  </AppCard>
 </template>
 
 <script>
-import ContainerApp from '../../components/shared/ContainerApp.vue';
+import FormMain from './FormMain.vue';
 import AppCard from '../../components/shared/AppCard.vue';
 
 export default {
   name: 'Main',
   components: {
-    ContainerApp,
+    FormMain,
     AppCard
   }
 };

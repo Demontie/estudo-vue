@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <Main />
-  </div>
+  <ContainerApp>
+    <router-view />
+  </ContainerApp>
 </template>
 
 <script>
-import Main from './views/Main/Main.vue';
+import ContainerApp from './components/shared/ContainerApp.vue';
 
 export default {
   name: 'App',
   components: {
-    Main
+    ContainerApp
   }
 };
 </script>

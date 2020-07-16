@@ -13,8 +13,5 @@ export default {
   props: {
     title: String
   }
-  // components: {
-  //   HelloWorld
-  // }
 };
 </script>
