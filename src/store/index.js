@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import MainStore from '../views/Main/store/store';
+import RepositorioStore from '../views/Repositorio/store/store';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    MainStore
+    RepositorioStore
   }
 });

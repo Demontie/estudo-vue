@@ -1,14 +1,40 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '../views/Main/Main.vue';
+
+const Repositorio = () =>
+  import(/* webpackChunkName: "usuario" */ '../views/Repositorio/Repositorio');
+const ListaRepositorio = () =>
+  import(/* webpackChunkName: "usuario" */ '../views/Repositorio/ListaRepositorio');
+const DetalheRepositorio = () =>
+  import(/* webpackChunkName: "usuario" */ '../views/Repositorio/DetalheRepositorio');
 
 Vue.use(VueRouter);
-
+// {
+//   path: ':url',
+//   component: UsuarioDetalhe,
+//   props: true,
+//   beforeEnter: (to, from, next) => {
+//     console.log('antes da rota -> usuário detalhe');
+//     next();
+//   }
+// }
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'repositorio',
+    component: Repositorio,
+    children: [
+      { path: '', component: ListaRepositorio },
+      {
+        path: ':url',
+        component: DetalheRepositorio,
+        props: true,
+        beforeEnter: (to, from, next) => {
+          console.log('antes da rota -> usuário detalhe');
+          next();
+        }
+      }
+    ]
   }
 ];
 

@@ -3,6 +3,7 @@ import api from '../../../services/api';
 export default {
   async inserirRepositorio({ commit, state }, newRepo) {
     try {
+      console.log(state);
       if (newRepo.toString().trim() === '') {
         throw new Error('Informe um reposotio');
       }
@@ -26,18 +27,12 @@ export default {
       const response = await api.get(`/repos/${newRepo}`);
 
       const data = {
-        name: response.data.full_name
+        name: response.data.full_name,
+        avatar: response.data.owner.avatar_url
       };
       commit('setRepositories', data);
     } catch (error) {
-      console.log(error.message);
-      //   const teste = { messege: error.message };
       throw error.message;
-
-      //   this.setState({ erro: true, msgErro: msg });
-      // } finally {
-      //   this.setState({ loading: false });
-      // }
     }
   }
 };
