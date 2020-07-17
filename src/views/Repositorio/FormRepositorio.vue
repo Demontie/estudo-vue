@@ -1,8 +1,8 @@
 <template>
-  <b-form @submit.stop.prevent>
+  <b-form @submit.stop.prevent :novalidate="true">
     <b-input-group class="mt-3">
       <b-form-input
-        v-model="newRepo"
+        v-model="$v.newRepo.$model"
         @keyup.enter="salvar"
         required
         placeholder="Repositorio"
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators';
+
 import { mapActions } from 'vuex';
 
 export default {
@@ -32,25 +34,37 @@ export default {
     ...mapActions({
       adicionarRepositorio: 'inserirRepositorio'
     }),
+
     async salvar() {
-      this.erro = false;
-      this.msgErro = null;
-      this.loading = true;
-      try {
-        await this.adicionarRepositorio(this.newRepo);
-        this.newRepo = '';
-      } catch (msgErro) {
-        this.erro = true;
-        this.msgErro = msgErro;
-      } finally {
-        this.loading = false;
+      console.log(this.$v);
+      this.$v.newRepo.$touch();
+      if (this.$v.newRepo.$anyError) {
+        return false;
       }
+      return false;
+      // this.erro = false;
+      // this.msgErro = null;
+      // this.loading = true;
+      // try {
+      //   await this.adicionarRepositorio(this.newRepo);
+      //   this.newRepo = '';
+      // } catch (msgErro) {
+      //   this.erro = true;
+      //   this.msgErro = msgErro;
+      // } finally {
+      //   this.loading = false;
+      // }
     },
     async limparCampo() {
       this.newRepo = '';
       this.loading = false;
       this.erro = false;
       this.msgErro = null;
+    }
+  },
+  validations: {
+    newRepo: {
+      required
     }
   }
 };

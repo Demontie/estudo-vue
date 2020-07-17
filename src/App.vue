@@ -1,6 +1,6 @@
 <template>
   <ContainerApp>
-    <router-view />
+    <router-view> </router-view>
   </ContainerApp>
 </template>
 

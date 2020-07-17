@@ -7,11 +7,13 @@
     >
       <b-avatar variant="info" :src="reposositorio.avatar" class="mr-3"></b-avatar>
       <span class="mr-auto">{{ reposositorio.name }}</span>
-      <b-button pill variant="danger" class="mr-1">Apagar</b-button>
+      <b-button pill variant="danger" class="mr-1" @click="apagarRepositorio(reposositorio)"
+        >Apagar</b-button
+      >
       <b-button
         pill
         variant="info"
-        :to="{ name: 'repositorio.detalhe', params: { url: reposositorio.name } }"
+        :to="{ name: 'repositorio.detalhes', params: { url: reposositorio.name } }"
         >Detalhes</b-button
       >
     </b-list-group-item>
@@ -27,7 +29,14 @@ export default {
     ...mapGetters({ repositorios: 'getRepositories' })
   },
   methods: {
-    ...mapActions({ carregarRepo: 'loadRepositorio' })
+    ...mapActions({ carregarRepo: 'loadRepositorio', deletarRepositorio: 'deletarRepositorio' }),
+    async apagarRepositorio(repositorio) {
+      try {
+        await this.deletarRepositorio(repositorio);
+      } catch (msgErro) {
+        console.log(msgErro);
+      }
+    }
   },
   created() {
     this.carregarRepo();

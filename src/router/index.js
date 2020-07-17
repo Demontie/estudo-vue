@@ -9,33 +9,32 @@ const DetalheRepositorio = () =>
   import(/* webpackChunkName: "usuario" */ '../views/Repositorio/DetalheRepositorio');
 
 Vue.use(VueRouter);
-// {
-//   path: ':url',
-//   component: UsuarioDetalhe,
-//   props: true,
-//   beforeEnter: (to, from, next) => {
-//     console.log('antes da rota -> usuário detalhe');
-//     next();
-//   }
-// }
+
 const routes = [
   {
     path: '/',
     name: 'repositorio',
     component: Repositorio,
     children: [
-      { path: '', component: ListaRepositorio },
+      {
+        path: '',
+        name: 'repositorio.lista',
+        props: { title: 'Repositorio' },
+        component: ListaRepositorio
+      },
       {
         path: ':url',
-        component: DetalheRepositorio,
-        props: true,
-        beforeEnter: (to, from, next) => {
-          console.log('antes da rota -> usuário detalhe');
-          next();
-        }
+        props: { title: 'Detalhes' },
+        name: 'repositorio.detalhes',
+        component: DetalheRepositorio
       }
     ]
   }
+  // {
+  //   path: ':url',
+  //   name: 'repositorio.detalhes',
+  //   component: DetalheRepositorio
+  // }
 ];
 
 const router = new VueRouter({

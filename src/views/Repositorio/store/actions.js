@@ -32,8 +32,10 @@ export default {
         name: response.data.full_name,
         avatar: response.data.owner.avatar_url
       };
-      localStorage.setItem('repositories', JSON.stringify(data)); // seria como o axios post
-      commit('setRepositories', data);
+      repositories.push(data);
+
+      localStorage.setItem('repositories', JSON.stringify(repositories)); // seria como o axios post
+      commit('setRepositories', repositories);
     } catch (error) {
       throw error.message;
     }
@@ -49,13 +51,16 @@ export default {
       throw error.message;
     }
   },
-  async deletarRepositorio({ commit }) {
+  async deletarRepositorio({ dispatch, state }, repositorio) {
     try {
-      const repositories = localStorage.getItem('repositories');
-
-      if (repositories) {
-        commit('setRepositories', JSON.parse(repositories));
+      const { repositories } = state;
+      const pos = repositories.indexOf(repositorio);
+      console.log(repositories, repositorio, pos);
+      if (pos !== -1) {
+        repositories.splice(pos, 1);
       }
+      localStorage.setItem('repositories', JSON.stringify(repositories));
+      dispatch('loadRepositorio');
     } catch (error) {
       throw error.message;
     }
