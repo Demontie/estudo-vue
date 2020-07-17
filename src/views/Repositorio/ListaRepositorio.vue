@@ -19,12 +19,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ListaRepositorio',
   computed: {
     ...mapGetters({ repositorios: 'getRepositories' })
+  },
+  methods: {
+    ...mapActions({ carregarRepo: 'loadRepositorio' })
+  },
+  created() {
+    this.carregarRepo();
   }
 };
 </script>

@@ -1,7 +1,12 @@
 <template>
-  <b-form>
+  <b-form @submit.stop.prevent>
     <b-input-group class="mt-3">
-      <b-form-input v-model="newRepo" required placeholder="Repositorio"></b-form-input>
+      <b-form-input
+        v-model="newRepo"
+        @keyup.enter="salvar"
+        required
+        placeholder="Repositorio"
+      ></b-form-input>
       <b-input-group-append>
         <b-button type="button" variant="success" @click="salvar">Salvar</b-button>
         <b-button type="button" variant="danger" @click="limparCampo">Limpar</b-button>
